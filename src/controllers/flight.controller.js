@@ -1,0 +1,13 @@
+const db = require("../config/db");
+
+async function list(req, res) {
+  try {
+    const r = await db.query("SELECT * FROM flight ORDER BY flight_id LIMIT 200");
+    return res.json(r.rows);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Erro ao consultar flight", details: err.message });
+  }
+}
+
+module.exports = { list };
