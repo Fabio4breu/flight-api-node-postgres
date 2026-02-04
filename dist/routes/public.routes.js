@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_controller_1 = require("../controllers/auth.controller");
+const aircraft_controller_1 = require("../controllers/aircraft.controller");
+const passenger_controller_1 = require("../controllers/passenger.controller");
+const flight_controller_1 = require("../controllers/flight.controller");
+const boardingPass_controller_1 = require("../controllers/boardingPass.controller");
+const join_controller_1 = require("../controllers/join.controller");
+const router = (0, express_1.Router)();
+router.post("/login", auth_controller_1.login);
+router.get("/aircraft", aircraft_controller_1.list);
+router.get("/passenger", passenger_controller_1.list);
+router.get("/flight", flight_controller_1.list);
+router.get("/boarding-pass", boardingPass_controller_1.list);
+router.get("/boarding-pass/full", join_controller_1.listFull);
+exports.default = router;

@@ -1,6 +1,7 @@
-const db = require("../config/db");
+import { Request, Response } from "express";
+import db from "../config/db";
 
-async function listFull(req, res) {
+export async function listFull(req: Request, res: Response) {
   try {
     const sql = `
       SELECT
@@ -26,13 +27,9 @@ async function listFull(req, res) {
       ORDER BY bp.boarding_pass_id
       LIMIT 500
     `;
-
     const r = await db.query(sql);
     return res.json(r.rows);
-  } catch (err) {
-    console.error(err);
+  } catch (err: any) {
     return res.status(500).json({ error: "Erro no JOIN", details: err.message });
   }
 }
-
-module.exports = { listFull };
